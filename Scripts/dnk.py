@@ -1,25 +1,27 @@
 import mysql.connector
 
-# Подключение к базе данных
-conn = mysql.connector.connect(
-        host="ensembldb.ensembl.org",
-        port="3306",
-        user="anonymous",
-        password="",
-        database="homo_sapiens_core_101_38"
-    )    
-
-    cursor = conn.cursor()
-    cursor.execute(sql_query)
-    results = cursor.fetchall()
-    for row in results:
-    print(row)
-    cursor.close()
-    conn.close()
+def execute_query(sql_query):
+    try:
+        # Подключение к базе данных
+        conn = mysql.connector.connect(
+                host="ensembldb.ensembl.org",
+                port="3306",
+                user="anonymous",
+                password="",
+                database="homo_sapiens_core_101_38"
+        )
+        
+        cursor = conn.cursor()
+        cursor.execute(sql_query)
+        results = cursor.fetchall()
+        for row in results:
+            print(row)
+        cursor.close()
+        conn.close()
 
     except mysql.connector.Error as error:
         print("Error executing query:", error)
-        
+
 if __name__ == "__main__":
     first_query = "SELECT * FROM your_table LIMIT 10;"
     execute_query(first_query)

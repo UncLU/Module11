@@ -10,37 +10,22 @@ def execute_query(sql_query):
         port="4497"
     )
 
-    # Создание курсора для выполнения запросов
-    cur = conn.cursor()
+# Создание курсора для выполнения запросов
+cur = conn.cursor()
 
-    # Выполнение запроса
-    cur.execute(sql_query)
+# SQL-запрос
+sql_query = "SELECT * FROM таблица WHERE условие;"
 
-    # Получение результатов
-    results = cur.fetchall()
+# Выполнение запроса
+cur.execute(sql_query)
 
-    # Вывод результатов
-    for row in results:
-        print(row)
+# Получение результатов
+results = cur.fetchall()
 
-    # Закрытие курсора и соединения
-    cur.close()
-    conn.close()
+# Вывод результатов
+for row in results:
+    print(row)
 
-if __name__ == "__main__":
-    # Выполнение первого запроса
-    print("First Query:")
-    first_query = "SELECT * FROM fr.fram_acc LIMIT 1;"
-    execute_query(first_query)
-
-    # Выполнение второго запроса
-    print("Second Query:")
-    second_query = """
-    SELECT fr.rfam_acc, fr.rfamseq_acc, fr.seq_start, fr.seq_end
-    FROM full_region fr, rfamseq rf, taxonomy tx
-    WHERE rf.ncbi_id = tx.ncbi_id
-    AND fr.rfamseq_acc = rf.rfamseq_acc
-    AND tx.ncbi_id = 10116
-    AND is_significant = 1;
-    """
-    execute_query(second_query)
+# Закрытие курсора и соединения
+cur.close()
+conn.close()

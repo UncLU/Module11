@@ -23,7 +23,7 @@ def execute_query(sql_query):
         print("Error executing query:", error)
 
 if __name__ == "__main__":
-    first_query = "SELECT * FROM protein LIMIT 10;"
+    first_query = "SELECT * FROM genome_db_adaptor LIMIT 10;"
     execute_query(first_query)
 
     second_query = "SELECT * FROM dna LIMIT 10;"

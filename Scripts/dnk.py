@@ -4,9 +4,9 @@ def execute_query(sql_query):
     # Подключение к базе данных
     conn = psycopg2.connect(
         dbname="Rfam",
-        user="пользователь",
+        user="rfamro",
         password="none",
-        host="хост",
+        host="mysql-rfam-public.ebi.ac.uk",
         port="4497"
     )
 

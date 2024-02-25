@@ -1,5 +1,28 @@
 ---
-test: 
-  script: 
-    - ([ -f /var/www/html/index.html ]) || (echo 'Executing no. 1' >/var/www/html/index.html) && (echo "Executing no. `awk {'print $NF'+1} /var/www/html/index.html `" > /var/www/html/index.html)
-  when: manual
+name: Execute SQL Script
+
+on:
+  push:
+    branches:
+      - B11.5
+    paths:
+      - 'scripts/*.sql'
+
+jobs:
+  execute_sql_script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install psycopg2-binary
+
+    - name: Execute SQL script
+      run: python path/to/your/script.py

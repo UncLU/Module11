@@ -27,7 +27,7 @@ def execute_query(sql_query):
     cur.close()
     conn.close()
 
-    if __name__ == "__main__":
+if __name__ == "__main__":
     # Выполнение первого запроса
     print("First Query:")
     first_query = "SELECT * FROM fr.fram_acc LIMIT 1;"

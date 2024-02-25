@@ -6,7 +6,7 @@ on:
     branches:
       - B11.5
     paths:
-      - 'scripts/*.sql'
+      - 'Scripts/*.sql'
 
 jobs:
   execute_sql_script:

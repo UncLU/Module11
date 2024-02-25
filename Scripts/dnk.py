@@ -29,9 +29,9 @@ def execute_query(sql_query):
 
 if __name__ == "__main__":
     # Выполнение первого запроса
-    print("First Query:")
-    first_query = "SELECT * FROM fr.fram_acc LIMIT 1;"
-    execute_query(first_query)
+    # print("First Query:")
+    # first_query = "SELECT * FROM fr.fram_acc LIMIT 1;"
+    # execute_query(first_query)
 
     # Выполнение второго запроса
     print("Second Query:")

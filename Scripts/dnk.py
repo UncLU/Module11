@@ -1,46 +1,26 @@
-import psycopg2
+import mysql.connector
 
-def execute_query(sql_query):
-    # Подключение к базе данных
-    conn = psycopg2.connect(
-        dbname="Rfam",
-        user="rfamro",
-        # password="none",
-        host="mysql-rfam-public.ebi.ac.uk",
-        port="4497"
-    )
+# Подключение к базе данных
+conn = mysql.connector.connect(
+    host="ensembldb.ensembl.org",
+    port="3306",
+    user="anonymous",
+    password="",
+    database="homo_sapiens_core_101_38"
+)
 
-    # Создание курсора для выполнения запросов
-    cur = conn.cursor()
+# Создание курсора
+cursor = conn.cursor()
 
-    # Выполнение запроса
-    cur.execute(sql_query)
+# Выполнение запроса
+cursor.execute("SELECT * FROM gene LIMIT 10")
 
-    # Получение результатов
-    results = cur.fetchall()
+# Получение результатов запроса
+results = cursor.fetchall()
+for row in results:
+    print(row)
 
-    # Вывод результатов
-    for row in results:
-        print(row)
-
-    # Закрытие курсора и соединения
-    cur.close()
-    conn.close()
-
-if __name__ == "__main__":
-    # Выполнение первого запроса
-    # print("First Query:")
-    # first_query = "SELECT * FROM fr.fram_acc LIMIT 1;"
-    # execute_query(first_query)
-
-    # Выполнение второго запроса
-    print("Second Query:")
-    second_query = """
-    SELECT fr.rfam_acc, fr.rfamseq_acc, fr.seq_start, fr.seq_end
-    FROM full_region fr, rfamseq rf, taxonomy tx
-    WHERE rf.ncbi_id = tx.ncbi_id
-    AND fr.rfamseq_acc = rf.rfamseq_acc
-    AND tx.ncbi_id = 10116
-    AND is_significant = 1;
-    """
+# Закрытие курсора и соединения
+cursor.close()
+conn.close()
     execute_query(second_query)

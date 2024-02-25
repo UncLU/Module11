@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out repository
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Set up Python
@@ -19,8 +19,8 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install dependencies
-      run: pip install psycopg2-binary
+    - name: Install MySQL client
+      run: sudo apt-get install python3-mysql.connector  # Установка MySQL клиента
 
     - name: Execute SQL script
       run: python Scripts/dnk.py
